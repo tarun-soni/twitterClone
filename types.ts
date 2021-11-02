@@ -8,3 +8,7 @@ export type RootStackParamList = {
   Fleet: undefined
   NotFound: undefined
 }
+
+export type SearchStackParamsList = {
+  SEARCH_SCREEN: undefined
+}

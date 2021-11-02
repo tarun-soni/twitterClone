@@ -26,3 +26,7 @@ export const SCREEN = {
   width,
   height,
 }
+
+export const SIZES = {
+  iconSize: 20,
+}
