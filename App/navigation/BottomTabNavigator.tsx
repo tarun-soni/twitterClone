@@ -1,11 +1,17 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {
-  Home as HomeIcon,
+  Home2 as HomeIcon,
   Notification,
   SearchNormal,
+  Send2,
 } from 'iconsax-react-native'
-import { HOME_TAB, NOTIFCATION_TAB, SEARCH_TAB } from '../constants/screens'
+import {
+  HOME_TAB,
+  NOTIFCATION_TAB,
+  SEARCH_TAB,
+  MESSAGE_TAB,
+} from '../constants/screens'
 import { COLORS } from '../constants/theme'
 import { BottomRoutes } from './routes/bottomTabRoutes'
 
@@ -24,6 +30,8 @@ const BottomTabNavigator = () => {
               return <SearchNormal color={color} variant="Bulk" size={20} />
             case NOTIFCATION_TAB:
               return <Notification color={color} variant="Bulk" size={20} />
+            case MESSAGE_TAB:
+              return <Send2 color={color} variant="Bulk" size={20} />
             default:
               return null
           }
@@ -33,7 +41,6 @@ const BottomTabNavigator = () => {
       })}
     >
       <>
-        {console.log('BottomRoutes :>> ', BottomRoutes)}
         {BottomRoutes.map(_ => (
           <BottomTab.Screen
             key={_.name}

@@ -1,5 +1,10 @@
 import { Appearance, StyleSheet } from 'react-native'
-import { HOME_TAB, SEARCH_TAB, NOTIFCATION_TAB } from '../../constants/screens'
+import {
+  HOME_TAB,
+  SEARCH_TAB,
+  NOTIFCATION_TAB,
+  MESSAGE_TAB,
+} from '../../constants/screens'
 import { COLORS } from '../../constants/theme'
 import Home from '../../screens/Home'
 import Search from '../../screens/Search'
@@ -37,7 +42,17 @@ export const BottomRoutes = [
     name: NOTIFCATION_TAB,
     component: Search,
     options: {
-      title: 'Search',
+      title: 'Notifications',
+      tabBarActiveTintColor:
+        colorScheme === 'light' ? COLORS.light.tint : COLORS.dark.tint,
+      tabBarLabelStyle: [styles.tabStyle],
+    },
+  },
+  {
+    name: MESSAGE_TAB,
+    component: Search,
+    options: {
+      title: 'Messages',
       tabBarActiveTintColor:
         colorScheme === 'light' ? COLORS.light.tint : COLORS.dark.tint,
       tabBarLabelStyle: [styles.tabStyle],
