@@ -1,8 +1,17 @@
 import React from 'react'
-import Main from './Main'
+import { StatusBar } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import useColorScheme from './hooks/useColorScheme'
+import Navigation from './navigation'
 
 const App = () => {
-  return <Main />
+  const colorScheme = useColorScheme()
+  return (
+    <SafeAreaProvider>
+      <Navigation colorScheme={colorScheme} />
+      <StatusBar />
+    </SafeAreaProvider>
+  )
 }
 
 export default App
