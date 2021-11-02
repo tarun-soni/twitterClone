@@ -1,16 +1,12 @@
 import React from 'react'
-
 import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native'
-import { ColorSchemeName } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../types'
+import { NavigationPropTypes, RootStackParamList } from '../../types'
 import BottomTabNavigator from './BottomTabNavigator'
-
-type NavigationPropTypes = { colorScheme: ColorSchemeName }
 
 const Navigation: React.FC<NavigationPropTypes> = ({ colorScheme }) => {
   return (

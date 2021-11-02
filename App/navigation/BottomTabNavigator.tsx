@@ -40,9 +40,9 @@ const BottomTabNavigator = () => {
         name={HOME_SCREEN}
         component={Home}
         options={{
+          title: 'Home',
           tabBarActiveTintColor:
             colorScheme === 'light' ? COLORS.light.tint : COLORS.dark.tint,
-          title: 'Home',
           tabBarLabelStyle: [styles.tabStyle],
         }}
       />

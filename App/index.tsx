@@ -8,8 +8,8 @@ const App = () => {
   const colorScheme = useColorScheme()
   return (
     <SafeAreaProvider>
-      <Navigation colorScheme={colorScheme} />
       <StatusBar />
+      <Navigation colorScheme={colorScheme} />
     </SafeAreaProvider>
   )
 }
