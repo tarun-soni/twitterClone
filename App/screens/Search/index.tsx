@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
+import { SEARCH_SCREEN } from '../../constants/screens'
 
 function SearchScreen() {
   return (
@@ -13,8 +14,8 @@ function SearchScreen() {
 const Search = () => {
   const SearchStack = createNativeStackNavigator()
   return (
-    <SearchStack.Navigator initialRouteName={'Search'}>
-      <SearchStack.Screen name="Search" component={SearchScreen} />
+    <SearchStack.Navigator initialRouteName={SEARCH_SCREEN}>
+      <SearchStack.Screen name={SEARCH_SCREEN} component={SearchScreen} />
     </SearchStack.Navigator>
   )
 }

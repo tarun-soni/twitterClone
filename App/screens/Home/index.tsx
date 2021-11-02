@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, Text } from 'react-native'
+import { HOME_SCREEN } from '../../constants/screens'
 
 function HomeScreen() {
   return (
@@ -13,8 +14,8 @@ function HomeScreen() {
 const Home = () => {
   const HomeStack = createNativeStackNavigator()
   return (
-    <HomeStack.Navigator initialRouteName={'HOME'}>
-      <HomeStack.Screen name="HOME" component={HomeScreen} />
+    <HomeStack.Navigator initialRouteName={HOME_SCREEN}>
+      <HomeStack.Screen name={HOME_SCREEN} component={HomeScreen} />
     </HomeStack.Navigator>
   )
 }

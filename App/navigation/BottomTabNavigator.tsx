@@ -1,22 +1,16 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home as HomeIcon, SearchNormal } from 'iconsax-react-native'
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { HOME_SCREEN, SEARCH_SCREEN } from '../constants/screens'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+  Home as HomeIcon,
+  Notification,
+  SearchNormal,
+} from 'iconsax-react-native'
+import { HOME_TAB, NOTIFCATION_TAB, SEARCH_TAB } from '../constants/screens'
 import { COLORS } from '../constants/theme'
-import useColorScheme from '../hooks/useColorScheme'
-import Home from '../screens/Home'
-import Search from '../screens/Search'
-
-const styles = StyleSheet.create({
-  tabStyle: {
-    fontSize: 14,
-  },
-})
+import { BottomRoutes } from './routes/bottomTabRoutes'
 
 const BottomTabNavigator = () => {
   const BottomTab = createBottomTabNavigator()
-  const colorScheme = useColorScheme()
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
@@ -24,10 +18,12 @@ const BottomTabNavigator = () => {
 
         tabBarIcon: ({ color }) => {
           switch (route.name) {
-            case HOME_SCREEN:
-              return <HomeIcon color={color} variant="TwoTone" size={20} />
-            case SEARCH_SCREEN:
-              return <SearchNormal color={color} variant="TwoTone" size={20} />
+            case HOME_TAB:
+              return <HomeIcon color={color} variant="Bulk" size={20} />
+            case SEARCH_TAB:
+              return <SearchNormal color={color} variant="Bulk" size={20} />
+            case NOTIFCATION_TAB:
+              return <Notification color={color} variant="Bulk" size={20} />
             default:
               return null
           }
@@ -36,26 +32,17 @@ const BottomTabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <BottomTab.Screen
-        name={HOME_SCREEN}
-        component={Home}
-        options={{
-          title: 'Home',
-          tabBarActiveTintColor:
-            colorScheme === 'light' ? COLORS.light.tint : COLORS.dark.tint,
-          tabBarLabelStyle: [styles.tabStyle],
-        }}
-      />
-      <BottomTab.Screen
-        name={SEARCH_SCREEN}
-        component={Search}
-        options={{
-          title: 'Search',
-          tabBarActiveTintColor:
-            colorScheme === 'light' ? COLORS.light.tint : COLORS.dark.tint,
-          tabBarLabelStyle: [styles.tabStyle],
-        }}
-      />
+      <>
+        {console.log('BottomRoutes :>> ', BottomRoutes)}
+        {BottomRoutes.map(_ => (
+          <BottomTab.Screen
+            key={_.name}
+            name={_.name}
+            component={_.component}
+            options={_.options}
+          />
+        ))}
+      </>
     </BottomTab.Navigator>
   )
 }
