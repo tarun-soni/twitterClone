@@ -5,6 +5,8 @@ const { width, height } = Dimensions.get('window')
 const tintColorLight = '#4D9FEC'
 const tintColorDark = '#fff'
 export const COLORS = {
+  gray: '#66757F',
+  black: '#111',
   light: {
     text: '#000',
     bg: '#fff',

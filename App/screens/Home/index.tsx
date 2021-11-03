@@ -1,13 +1,20 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
+import Tweet from '../../components/Tweet'
 import { HOME_SCREEN } from '../../constants/screens'
+import tweets from '../../data/tweets'
+import styles from './styles'
 
 function HomeScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+    <View style={styles.home_container}>
+      <FlatList
+        data={tweets}
+        keyExtractor={item => `${item.id}`}
+        renderItem={({ item }) => <Tweet tweet={item} />}
+      />
     </View>
   )
 }
@@ -30,3 +37,14 @@ const Home = () => {
 }
 
 export default Home
+
+{
+  /* <FlatList
+        data={tweets}
+        renderItem={({item}) => <Tweet tweet={item}/>}
+        keyExtractor={(item) => item.id}
+        refreshing={loading}
+        onRefresh={fetchTweets}
+        ListHeaderComponent={UserFleetsList}
+      /> */
+}
