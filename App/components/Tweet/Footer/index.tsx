@@ -1,8 +1,11 @@
-import { Heart, Messages3 } from 'iconsax-react-native'
+import { Messages3 } from 'iconsax-react-native'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { TweetType } from '../../../../types'
 import styles from './footer.styles'
+import Icon from 'react-native-vector-icons/AntDesign'
+import EvilIcon from 'react-native-vector-icons/EvilIcons'
+import { SIZES } from '../../../constants/theme'
 
 type TweetProps = {
   tweet: TweetType
@@ -28,14 +31,14 @@ const Footer = ({ tweet }: TweetProps) => {
             size={20}
             color={!myLike ? 'grey' : 'red'}
           /> */}
-
-          <Heart size="20" color="gray" variant="TwoTone" />
+          <Icon name="heart" size={20} />
+          {/* <Heart size="20" color="gray" variant="TwoTone" /> */}
         </TouchableOpacity>
         <Text style={styles.number}>0</Text>
       </View>
       <View style={styles.iconContainer}>
-        {/* <EvilIcons name={'share-google'} size={28} color={'grey'} /> */}
-        <Messages3 size="20" color="gray" variant="TwoTone" />
+        {/* <Messages3 size="20" color="gray" variant="TwoTone" /> */}
+        <EvilIcon name="share-google" size={SIZES.iconSize} color={'grey'} />
       </View>
     </View>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image } from 'react-native'
+import { COLORS } from '../constants/theme'
 
 type ProfilePictureProps = {
   size?: number
@@ -12,6 +13,8 @@ const ProfilePicture = ({ image, size = 50 }: ProfilePictureProps) => (
     style={{
       width: size,
       height: size,
+      borderWidth: 1.25,
+      borderColor: COLORS.lightgrey,
       borderRadius: size,
     }}
   />
