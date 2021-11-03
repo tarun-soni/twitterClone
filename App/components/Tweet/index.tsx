@@ -2,9 +2,9 @@ import { ArrowDown2 } from 'iconsax-react-native'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { TweetType } from '../../../types'
-import { COLORS } from '../../constants/theme'
 import ProfilePicture from '../ProfilePicture'
-import styles from './styles'
+import Footer from './Footer'
+import styles from './tweet.styles'
 
 type TweetProps = {
   tweet: TweetType
@@ -30,7 +30,7 @@ const Tweet = ({ tweet }: TweetProps) => (
         <Image style={styles.image} source={{ uri: tweet.image }} />
       </View>
       {/* Footer */}
-      {/* <Footer tweet={tweet} /> */}
+      <Footer tweet={tweet} />
     </View>
   </View>
 )

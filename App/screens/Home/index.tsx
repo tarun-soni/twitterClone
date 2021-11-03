@@ -5,7 +5,7 @@ import ProfilePicture from '../../components/ProfilePicture'
 import Tweet from '../../components/Tweet'
 import { HOME_SCREEN } from '../../constants/screens'
 import tweets from '../../data/tweets'
-import styles from './styles'
+import styles from './home.styles'
 
 function HomeScreen() {
   return (
