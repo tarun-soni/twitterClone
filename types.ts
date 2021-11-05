@@ -8,6 +8,10 @@ export type RootStackParamList = {
   Fleet: undefined
   NotFound: undefined
 }
+export type HomeStackParamsList = {
+  HOME_SCREEN: undefined
+  NEW_TWEET_SCREEN: undefined
+}
 
 export type SearchStackParamsList = {
   SEARCH_SCREEN: undefined

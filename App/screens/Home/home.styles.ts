@@ -10,5 +10,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 5,
   },
+  tweet_button: {
+    backgroundColor: COLORS.twitterBlue,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+  },
 })
 export default styles

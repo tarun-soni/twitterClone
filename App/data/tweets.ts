@@ -1,5 +1,7 @@
 // https://avatars.dicebear.com/api/micah/random-peep.svg
 
+import { IMAGES } from '../constants/theme'
+
 const tweets = [
   {
     id: 't1',
@@ -7,7 +9,8 @@ const tweets = [
       id: 'u1',
       username: 'SavinVadim_',
       name: 'Vadim Savin',
-      image: 'https://i.imgur.com/IoJeHIw.png',
+      // image: 'https://i.imgur.com/IoJeHIw.png',
+      // iamge: IMAGES.demo_profile_uri,
     },
     createdAt: '2020-08-27T12:00:00.000Z',
     content:
@@ -24,7 +27,8 @@ const tweets = [
       id: 'u1',
       username: 'SavinVadim_',
       name: 'Vadim Savin',
-      image: 'https://i.imgur.com/IoJeHIw.png',
+      // image: 'https://i.imgur.com/IoJeHIw.png',
+      iamge: IMAGES.demo_profile_uri,
     },
     createdAt: '2020-08-27T12:00:00.000Z',
     content:

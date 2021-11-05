@@ -5,9 +5,12 @@ const { width, height } = Dimensions.get('window')
 const tintColorLight = '#4D9FEC'
 const tintColorDark = '#fff'
 export const COLORS = {
+  twitterBlue: tintColorLight,
+  black: '#111',
+  white: '#fff',
   gray: '#66757F',
   lightgrey: 'lightgrey',
-  black: '#111',
+  darkgrey: '#212121',
   light: {
     text: '#000',
     bg: '#fff',
@@ -32,4 +35,8 @@ export const SCREEN = {
 
 export const SIZES = {
   iconSize: 20,
+}
+
+export const IMAGES = {
+  demo_profile_uri: 'https://i.imgur.com/dfEcVgu.jpg',
 }
