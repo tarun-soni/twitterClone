@@ -16,7 +16,9 @@ const NewTweetScreen = ({ navigation }: any) => {
   const [imageUrl, setImageUrl] = useState('https://i.imgur.com/dfEcVgu.jpeg')
 
   const onPostTweet = () => {}
-  const pickImage = () => {}
+  const pickImage = () => {
+    setImageUrl('')
+  }
   return (
     <SafeAreaView style={styles.new_tweet_container}>
       <View style={styles.headerContainer}>

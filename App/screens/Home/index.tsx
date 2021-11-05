@@ -20,6 +20,7 @@ function HomeScreen() {
         data={tweets}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <Tweet tweet={item} />}
+        ItemSeparatorComponent={() => <View style={styles.seperator} />}
       />
       <NewTweetButton />
     </View>

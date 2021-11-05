@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   tweet_wrapper: {
     // borderWidth: 2,
-    borderBottomWidth: 0.5,
+    // borderBottomWidth: 0.5,
     flexDirection: 'row',
     padding: 15,
     width: '100%',
