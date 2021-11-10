@@ -35,6 +35,8 @@ const Home = () => {
         name={HOME_SCREEN}
         component={HomeScreen}
         options={{
+          // ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerTitleAlign: 'center',
           headerTitle: () => (
             <EvilIcon name="sc-twitter" size={32} color={COLORS.light.tint} />
           ),
