@@ -1,6 +1,5 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { NEW_TWEET_SCREEN } from '../../constants/screens'
 import styles from './NewTweetButton.styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/core'
@@ -9,7 +8,7 @@ const NewTweetButton = () => {
   const navigation = useNavigation()
 
   const onPress = () => {
-    navigation.navigate(NEW_TWEET_SCREEN as never)
+    navigation.navigate('NEW_TWEET_SCREEN')
   }
   return (
     <TouchableOpacity

@@ -2,7 +2,6 @@ import React from 'react'
 import { View, FlatList } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
 import Tweet from '../../components/Tweet'
-import { HOME_SCREEN, NEW_TWEET_SCREEN } from '../../constants/screens'
 import { COLORS } from '../../constants/theme'
 import tweets from '../../data/tweets'
 import styles from './home.styles'
@@ -10,7 +9,7 @@ import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import NewTweetScreen from '../NewTweetScreen'
 import NewTweetButton from '../../components/NewTweetButton'
-import { HomeStackParamsList } from '../../../types'
+import { HomeStackParamsList } from '../../types/types'
 import {
   createStackNavigator,
   TransitionPresets,
@@ -33,9 +32,9 @@ function HomeScreen() {
 const Home = () => {
   const HomeStack = createStackNavigator<HomeStackParamsList>()
   return (
-    <HomeStack.Navigator initialRouteName={HOME_SCREEN}>
+    <HomeStack.Navigator initialRouteName={'HOME_SCREEN'}>
       <HomeStack.Screen
-        name={HOME_SCREEN}
+        name={'HOME_SCREEN'}
         component={HomeScreen}
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,
@@ -55,7 +54,7 @@ const Home = () => {
       />
 
       <HomeStack.Screen
-        name={NEW_TWEET_SCREEN}
+        name={'NEW_TWEET_SCREEN'}
         component={NewTweetScreen}
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,

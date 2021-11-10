@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import { TweetType } from '../../../../types'
+import { TweetType } from '../../../types/types'
 import styles from './footer.styles'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'

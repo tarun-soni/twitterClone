@@ -4,7 +4,7 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native'
-import { NavigationPropTypes, RootStackParamList } from '../../types'
+import { NavigationPropTypes, RootStackParamList } from '../types/types'
 import BottomTabNavigator from './BottomTabNavigator'
 import { createStackNavigator } from '@react-navigation/stack'
 import ShowTweet from '../screens/ShowTweet'

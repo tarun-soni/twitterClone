@@ -1,8 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { View, Text } from 'react-native'
-import { SearchStackParamsList } from '../../../types'
-import { SEARCH_SCREEN } from '../../constants/screens'
+import { SearchStackParamsList } from '../../types/types'
 
 function SearchScreen() {
   return (
@@ -15,8 +14,8 @@ function SearchScreen() {
 const Search = () => {
   const SearchStack = createStackNavigator<SearchStackParamsList>()
   return (
-    <SearchStack.Navigator initialRouteName={SEARCH_SCREEN}>
-      <SearchStack.Screen name={SEARCH_SCREEN} component={SearchScreen} />
+    <SearchStack.Navigator initialRouteName={'SEARCH_SCREEN'}>
+      <SearchStack.Screen name={'SEARCH_SCREEN'} component={SearchScreen} />
     </SearchStack.Navigator>
   )
 }

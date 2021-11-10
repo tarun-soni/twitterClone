@@ -6,17 +6,19 @@ import {
   SearchNormal,
   Send2,
 } from 'iconsax-react-native'
-import {
-  HOME_TAB,
-  NOTIFCATION_TAB,
-  SEARCH_TAB,
-  MESSAGE_TAB,
-} from '../constants/screens'
+
 import { COLORS } from '../constants/theme'
 import { BottomRoutes } from './routes/bottomTabRoutes'
 
+type BottomTabParams = {
+  HOME_TAB: undefined
+  SEARCH_TAB: undefined
+  NOTIFCATION_TAB: undefined
+  MESSAGE_TAB: undefined
+}
+
 const BottomTabNavigator = () => {
-  const BottomTab = createBottomTabNavigator()
+  const BottomTab = createBottomTabNavigator<BottomTabParams>()
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
@@ -24,13 +26,13 @@ const BottomTabNavigator = () => {
 
         tabBarIcon: ({ color }) => {
           switch (route.name) {
-            case HOME_TAB:
+            case 'HOME_TAB':
               return <HomeIcon color={color} variant="Bulk" size={20} />
-            case SEARCH_TAB:
+            case 'SEARCH_TAB':
               return <SearchNormal color={color} variant="Bulk" size={20} />
-            case NOTIFCATION_TAB:
+            case 'NOTIFCATION_TAB':
               return <Notification color={color} variant="Bulk" size={20} />
-            case MESSAGE_TAB:
+            case 'MESSAGE_TAB':
               return <Send2 color={color} variant="Bulk" size={20} />
             default:
               return null
@@ -41,7 +43,7 @@ const BottomTabNavigator = () => {
       })}
     >
       <>
-        {BottomRoutes.map(_ => (
+        {BottomRoutes.map((_: any) => (
           <BottomTab.Screen
             key={_.name}
             name={_.name}

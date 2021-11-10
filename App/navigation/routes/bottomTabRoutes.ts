@@ -1,10 +1,4 @@
 import { Appearance, StyleSheet } from 'react-native'
-import {
-  HOME_TAB,
-  SEARCH_TAB,
-  NOTIFCATION_TAB,
-  MESSAGE_TAB,
-} from '../../constants/screens'
 import { COLORS } from '../../constants/theme'
 import Home from '../../screens/Home'
 import Search from '../../screens/Search'
@@ -19,7 +13,7 @@ const styles = StyleSheet.create({
 
 export const BottomRoutes = [
   {
-    name: HOME_TAB,
+    name: 'HOME_TAB',
     component: Home,
     options: {
       title: 'Home',
@@ -29,7 +23,7 @@ export const BottomRoutes = [
     },
   },
   {
-    name: SEARCH_TAB,
+    name: 'SEARCH_TAB',
     component: Search,
     options: {
       title: 'Search',
@@ -39,7 +33,7 @@ export const BottomRoutes = [
     },
   },
   {
-    name: NOTIFCATION_TAB,
+    name: 'NOTIFCATION_TAB',
     component: Search,
     options: {
       title: 'Notifications',
@@ -49,7 +43,7 @@ export const BottomRoutes = [
     },
   },
   {
-    name: MESSAGE_TAB,
+    name: 'MESSAGE_TAB',
     component: Search,
     options: {
       title: 'Messages',

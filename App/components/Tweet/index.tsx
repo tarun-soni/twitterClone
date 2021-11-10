@@ -2,8 +2,7 @@ import { useNavigation } from '@react-navigation/core'
 import { ArrowDown2 } from 'iconsax-react-native'
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { TweetType } from '../../../types'
-import { SHOW_TWEET } from '../../constants/screens'
+import { TweetType } from '../../types/types'
 import ProfilePicture from '../ProfilePicture'
 import Footer from './Footer'
 import styles from './tweet.styles'
@@ -16,7 +15,7 @@ const Tweet = ({ tweet }: TweetProps) => {
   const navigation = useNavigation()
 
   const onTweetPress = () => {
-    navigation.navigate(SHOW_TWEET as never)
+    navigation.navigate('SHOW_TWEET')
   }
   return (
     <View style={styles.tweet_wrapper}>
