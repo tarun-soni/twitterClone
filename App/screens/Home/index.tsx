@@ -1,4 +1,3 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
@@ -12,6 +11,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import NewTweetScreen from '../NewTweetScreen'
 import NewTweetButton from '../../components/NewTweetButton'
 import { HomeStackParamsList } from '../../../types'
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from '@react-navigation/stack'
 
 function HomeScreen() {
   return (
@@ -28,14 +31,14 @@ function HomeScreen() {
 }
 
 const Home = () => {
-  const HomeStack = createNativeStackNavigator<HomeStackParamsList>()
+  const HomeStack = createStackNavigator<HomeStackParamsList>()
   return (
     <HomeStack.Navigator initialRouteName={HOME_SCREEN}>
       <HomeStack.Screen
         name={HOME_SCREEN}
         component={HomeScreen}
         options={{
-          // ...TransitionPresets.ModalSlideFromBottomIOS,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
           headerTitleAlign: 'center',
           headerTitle: () => (
             <EvilIcon name="sc-twitter" size={32} color={COLORS.light.tint} />
@@ -55,6 +58,7 @@ const Home = () => {
         name={NEW_TWEET_SCREEN}
         component={NewTweetScreen}
         options={{
+          ...TransitionPresets.ModalSlideFromBottomIOS,
           headerShown: false,
         }}
       />

@@ -4,9 +4,9 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationPropTypes, RootStackParamList } from '../../types'
 import BottomTabNavigator from './BottomTabNavigator'
+import { createStackNavigator } from '@react-navigation/stack'
 
 const Navigation: React.FC<NavigationPropTypes> = ({ colorScheme }) => {
   return (
@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationPropTypes> = ({ colorScheme }) => {
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createStackNavigator<RootStackParamList>()
 
 function RootNavigator() {
   return (
