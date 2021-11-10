@@ -7,6 +7,7 @@ import {
 import { NavigationPropTypes, RootStackParamList } from '../../types'
 import BottomTabNavigator from './BottomTabNavigator'
 import { createStackNavigator } from '@react-navigation/stack'
+import ShowTweet from '../screens/ShowTweet'
 
 const Navigation: React.FC<NavigationPropTypes> = ({ colorScheme }) => {
   return (
@@ -27,6 +28,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
+      <Stack.Screen name="SHOW_TWEET" component={ShowTweet} />
     </Stack.Navigator>
   )
 }

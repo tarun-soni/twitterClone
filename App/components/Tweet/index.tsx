@@ -1,7 +1,9 @@
+import { useNavigation } from '@react-navigation/core'
 import { ArrowDown2 } from 'iconsax-react-native'
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { TweetType } from '../../../types'
+import { SHOW_TWEET } from '../../constants/screens'
 import ProfilePicture from '../ProfilePicture'
 import Footer from './Footer'
 import styles from './tweet.styles'
@@ -10,29 +12,38 @@ type TweetProps = {
   tweet: TweetType
 }
 
-const Tweet = ({ tweet }: TweetProps) => (
-  <View style={styles.tweet_wrapper}>
-    <ProfilePicture image={tweet.user.image} size={40} />
+const Tweet = ({ tweet }: TweetProps) => {
+  const navigation = useNavigation()
 
-    <View style={styles.container}>
-      {/* header */}
-      <View style={styles.tweetHeaderContainer}>
-        <View style={styles.tweetHeaderNames}>
-          <Text style={styles.name}>{tweet.user.name}</Text>
-          <Text style={styles.username}>@{tweet.user.username}</Text>
-          <Text style={styles.createdAt}>{Date.now()}</Text>
+  const onTweetPress = () => {
+    navigation.navigate(SHOW_TWEET as never)
+  }
+  return (
+    <View style={styles.tweet_wrapper}>
+      <ProfilePicture image={tweet.user.image} size={40} />
+
+      <View style={styles.container}>
+        {/* header */}
+        <View style={styles.tweetHeaderContainer}>
+          <View style={styles.tweetHeaderNames}>
+            <Text style={styles.name}>{tweet.user.name}</Text>
+            <Text style={styles.username}>@{tweet.user.username}</Text>
+            {/* <Text style={styles.createdAt}>{Date.now()}</Text> */}
+          </View>
+          <ArrowDown2 color={'red'} size="20" />
         </View>
-        <ArrowDown2 color={'red'} size="10" />
-      </View>
 
-      <View>
-        <Text style={styles.content}>{tweet.content}</Text>
-        <Image style={styles.image} source={{ uri: tweet.image }} />
+        <View>
+          <TouchableOpacity onPress={onTweetPress}>
+            <Text style={styles.content}>{tweet.content}</Text>
+            <Image style={styles.image} source={{ uri: tweet.image }} />
+          </TouchableOpacity>
+        </View>
+        {/* Footer */}
+        <Footer tweet={tweet} />
       </View>
-      {/* Footer */}
-      <Footer tweet={tweet} />
     </View>
-  </View>
-)
+  )
+}
 
 export default Tweet

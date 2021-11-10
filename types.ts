@@ -7,6 +7,7 @@ export type RootStackParamList = {
   NewTweet: undefined
   Fleet: undefined
   NotFound: undefined
+  SHOW_TWEET: undefined
 }
 export type HomeStackParamsList = {
   HOME_SCREEN: undefined

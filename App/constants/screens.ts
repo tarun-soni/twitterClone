@@ -7,6 +7,7 @@ export const MESSAGE_TAB = 'MESSAGE_TAB'
 //each tab root screen
 export const HOME_SCREEN = 'HOME_SCREEN'
 export const SEARCH_SCREEN = 'SEARCH_SCREEN'
+export const SHOW_TWEET = 'SHOW_TWEET'
 
 // From Home
 export const NEW_TWEET_SCREEN = 'NEW_TWEET_SCREEN'
