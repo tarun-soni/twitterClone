@@ -3,6 +3,7 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     semi: 0,
+    'eslint-comments/no-unlimited-disable': 0,
     'react/jsx-closing-bracket-location': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-curly-new-line': 0,
