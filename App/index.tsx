@@ -6,7 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import useColorScheme from './hooks/useColorScheme'
 import Navigation from './navigation'
 import config from '../src/aws-exports'
-import { getUser } from '../graphl/queries'
+import { getUser } from '../graphql/queries'
 
 // aws
 import Amplify from '@aws-amplify/core'
@@ -16,7 +16,7 @@ import { graphqlOperation } from '@aws-amplify/api-graphql'
 //@ts-ignore
 import { withAuthenticator } from 'aws-amplify-react-native'
 import getRandomImage from './utils/getRandomImage'
-import { createUser } from '../graphl/mutations'
+import { createUser } from '../graphql/mutations'
 
 Amplify.configure({
   ...config,
