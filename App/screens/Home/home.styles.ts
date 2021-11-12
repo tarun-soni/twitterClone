@@ -3,6 +3,9 @@ import { COLORS } from '../../constants/theme'
 const colorScheme = Appearance.getColorScheme()
 
 const styles = StyleSheet.create({
+  header_btn_container: {
+    marginHorizontal: 16,
+  },
   home_container: {
     alignItems: 'center',
     backgroundColor: colorScheme === 'dark' ? COLORS.dark.bg : COLORS.light.bg,

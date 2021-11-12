@@ -1,5 +1,6 @@
-import React from 'react'
-import { View, FlatList } from 'react-native'
+/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react'
+import { View, FlatList, ActivityIndicator } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
 import Tweet from '../../components/Tweet'
 import { COLORS } from '../../constants/theme'
@@ -14,6 +15,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from '@react-navigation/stack'
+import getAsyncStorageData from '../../utils/getAsyncStorageData'
 
 function HomeScreen() {
   return (
@@ -30,7 +32,36 @@ function HomeScreen() {
 }
 
 const Home = () => {
+  type UserType = {
+    username: string
+    image: string
+  }
   const HomeStack = createStackNavigator<HomeStackParamsList>()
+  const [currentUser, setCurrentUser] = useState<UserType>({
+    username: '',
+    image: '',
+  })
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        setLoading(true)
+        const user: any = await getAsyncStorageData('@current_user')
+        if (user.data) {
+          const { image, username } = user.data.getUser
+          setCurrentUser({
+            username,
+            image,
+          })
+        }
+        setLoading(false)
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+    fetchUser()
+  }, [])
   return (
     <HomeStack.Navigator initialRouteName={'HOME_SCREEN'}>
       <HomeStack.Screen
@@ -43,13 +74,25 @@ const Home = () => {
             <EvilIcon name="sc-twitter" size={32} color={COLORS.light.tint} />
           ),
           headerRight: () => (
-            <MaterialCommunityIcons
-              name={'star-four-points-outline'}
-              size={24}
-              color={COLORS.light.tint}
-            />
+            <View style={styles.header_btn_container}>
+              <MaterialCommunityIcons
+                name={'star-four-points-outline'}
+                size={24}
+                color={COLORS.light.tint}
+              />
+            </View>
           ),
-          headerLeft: () => <ProfilePicture size={20} />,
+          headerLeft: () => {
+            return (
+              <View style={styles.header_btn_container}>
+                {loading ? (
+                  <ActivityIndicator />
+                ) : (
+                  <ProfilePicture size={30} isSVG image={currentUser.image} />
+                )}
+              </View>
+            )
+          },
         }}
       />
 

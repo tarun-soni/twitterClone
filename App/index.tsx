@@ -17,6 +17,7 @@ import { graphqlOperation } from '@aws-amplify/api-graphql'
 import { withAuthenticator } from 'aws-amplify-react-native'
 import getRandomImage from './utils/getRandomImage'
 import { createUser } from '../graphql/mutations'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 Amplify.configure({
   ...config,
@@ -43,7 +44,8 @@ const App = () => {
       console.log('userInfo :>> ', userInfo)
       if (userInfo) {
         // Check if user already exists in database
-        const userData = await API.graphql(
+        // TODO: type userData and remove any
+        const userData: any = await API.graphql(
           graphqlOperation(getUser, {
             id: userInfo.attributes.sub,
           }),
@@ -62,6 +64,7 @@ const App = () => {
           await saveUserToDB(user)
         } else {
           console.log('User already exists')
+          await AsyncStorage.setItem('@current_user', JSON.stringify(userData))
         }
       }
       // if not, create new user in database

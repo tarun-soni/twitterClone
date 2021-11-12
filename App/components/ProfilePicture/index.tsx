@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import { Image, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { SvgUri } from 'react-native-svg'
-import { COLORS } from '../constants/theme'
+import styles from './ProfilePicture.styles'
 
 type ProfilePictureProps = {
   size?: number
-  image?: string
+  image: string
   isSVG?: boolean
 }
 const DEFAULT_IMAGE_1 = 'https://i.imgur.com/dfEcVgu.jpeg'
@@ -19,12 +19,13 @@ const ProfilePicture = ({
 }: ProfilePictureProps) => {
   if (isSVG) {
     return (
-      <View>
-        <SvgUri
-          width={size}
-          height={size}
-          uri="https://avatars.dicebear.com/api/micah/eg3f11e.svg"
-        />
+      <View
+        style={[
+          styles.profilePicture,
+          { width: size, height: size, borderRadius: size },
+        ]}
+      >
+        <SvgUri uri={image} />
       </View>
     )
   }
@@ -32,13 +33,10 @@ const ProfilePicture = ({
   return (
     <Image
       source={{ uri: image || DEFAULT_IMAGE_2 }}
-      style={{
-        width: size,
-        height: size,
-        borderWidth: 1.25,
-        borderColor: COLORS.lightgrey,
-        borderRadius: size,
-      }}
+      style={[
+        styles.profilePicture,
+        { width: size, height: size, borderRadius: size },
+      ]}
     />
   )
 }
