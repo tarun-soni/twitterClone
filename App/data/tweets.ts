@@ -37,35 +37,35 @@ const tweets = [
     numberOfRetweets: 11,
     numberOfLikes: 99,
   },
-  {
-    id: 't3',
-    user: {
-      id: 'u1',
-      username: 'SavinVadim_',
-      name: 'Vadim Savin',
-      image: 'https://i.imgur.com/IoJeHIw.png',
-    },
-    createdAt: '2020-08-27T12:00:00.000Z',
-    content: 'Hello World',
-    numberOfComments: 4,
-    numberOfRetweets: 11,
-    numberOfLikes: 99,
-  },
-  {
-    id: 't4',
-    user: {
-      id: 'u1',
-      username: 'SavinVadim_',
-      name: 'Vadim Savin',
-      image: 'https://i.imgur.com/IoJeHIw.png',
-    },
-    createdAt: '2020-08-27T12:00:00.000Z',
-    content:
-      "Hey Hey Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    numberOfComments: 4,
-    numberOfRetweets: 11,
-    numberOfLikes: 99,
-  },
+  // {
+  //   id: 't3',
+  //   user: {
+  //     id: 'u1',
+  //     username: 'SavinVadim_',
+  //     name: 'Vadim Savin',
+  //     image: 'https://i.imgur.com/IoJeHIw.png',
+  //   },
+  //   createdAt: '2020-08-27T12:00:00.000Z',
+  //   content: 'Hello World',
+  //   numberOfComments: 4,
+  //   numberOfRetweets: 11,
+  //   numberOfLikes: 99,
+  // },
+  // {
+  //   id: 't4',
+  //   user: {
+  //     id: 'u1',
+  //     username: 'SavinVadim_',
+  //     name: 'Vadim Savin',
+  //     image: 'https://i.imgur.com/IoJeHIw.png',
+  //   },
+  //   createdAt: '2020-08-27T12:00:00.000Z',
+  //   content:
+  //     "Hey Hey Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  //   numberOfComments: 4,
+  //   numberOfRetweets: 11,
+  //   numberOfLikes: 99,
+  // },
 ]
 
 export default tweets

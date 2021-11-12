@@ -17,9 +17,11 @@ const Tweet = ({ tweet }: TweetProps) => {
   const onTweetPress = () => {
     navigation.navigate('SHOW_TWEET')
   }
+
+  console.log('tweet :>> ', tweet)
   return (
     <View style={styles.tweet_wrapper}>
-      <ProfilePicture image={tweet.user.image} size={40} />
+      <ProfilePicture image={tweet.user.image || ''} size={40} isSVG />
 
       <View style={styles.container}>
         {/* header */}
@@ -35,7 +37,9 @@ const Tweet = ({ tweet }: TweetProps) => {
         <View>
           <TouchableOpacity onPress={onTweetPress}>
             <Text style={styles.content}>{tweet.content}</Text>
-            <Image style={styles.image} source={{ uri: tweet.image }} />
+            {tweet.image && (
+              <Image style={styles.image} source={{ uri: tweet.image }} />
+            )}
           </TouchableOpacity>
         </View>
         {/* Footer */}

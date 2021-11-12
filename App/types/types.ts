@@ -13,7 +13,7 @@ export type TweetType = {
   createdAt: string
   user: UserType
   content: string
-  image?: string
+  image?: string | null | undefined
   numberOfComments?: number
   numberOfRetweets?: number
   numberOfLikes?: number

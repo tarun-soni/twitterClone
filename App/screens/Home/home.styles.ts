@@ -13,11 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 5,
   },
-  seperator: {
-    backgroundColor: COLORS.gray,
-    borderWidth: 0.2,
-    justifyContent: 'center',
-  },
+
   tweet_button: {
     backgroundColor: COLORS.twitterBlue,
     borderRadius: 20,

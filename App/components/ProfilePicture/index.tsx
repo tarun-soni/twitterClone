@@ -31,13 +31,16 @@ const ProfilePicture = ({
   }
 
   return (
-    <Image
-      source={{ uri: image || DEFAULT_IMAGE_2 }}
-      style={[
-        styles.profilePicture,
-        { width: size, height: size, borderRadius: size },
-      ]}
-    />
+    <View>
+      {console.log('image :>> ', image)}
+      <Image
+        source={{ uri: image || DEFAULT_IMAGE_2 }}
+        style={[
+          styles.profilePicture,
+          { width: size, height: size, borderRadius: size },
+        ]}
+      />
+    </View>
   )
 }
 

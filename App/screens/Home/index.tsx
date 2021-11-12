@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
-import Tweet from '../../components/Tweet'
 import { COLORS } from '../../constants/theme'
-import tweets from '../../data/tweets'
 import styles from './home.styles'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -16,16 +14,12 @@ import {
   TransitionPresets,
 } from '@react-navigation/stack'
 import getAsyncStorageData from '../../utils/getAsyncStorageData'
+import Feed from '../../components/Feed'
 
 function HomeScreen() {
   return (
     <View style={styles.home_container}>
-      <FlatList
-        data={tweets}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <Tweet tweet={item} />}
-        ItemSeparatorComponent={() => <View style={styles.seperator} />}
-      />
+      <Feed />
       <NewTweetButton />
     </View>
   )
