@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     height: SCREEN.height * 0.3,
     width: SCREEN.width * 0.75,
   },
+  img_actionsContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '90%',
+  },
   inputsContainer: {
     marginHorizontal: 10,
   },

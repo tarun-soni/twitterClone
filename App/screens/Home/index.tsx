@@ -47,6 +47,7 @@ const Home = () => {
     async function fetchUser() {
       try {
         setLoading(true)
+        // TODO: type this async storage user obj
         const user: any = await getAsyncStorageData('@current_user')
         if (user.data) {
           const { image, username } = user.data.getUser
