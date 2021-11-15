@@ -21,6 +21,7 @@ const Feed = () => {
         setLoading(true)
         const tweetsData: any = await API.graphql(graphqlOperation(listTweets))
         setTweets(tweetsData.data.listTweets.items)
+
         setLoading(false)
       } catch (error) {
         // eslint-disable-next-line no-console

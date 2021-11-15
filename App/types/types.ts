@@ -17,8 +17,17 @@ export type TweetType = {
   numberOfComments?: number
   numberOfRetweets?: number
   numberOfLikes?: number
+  likes: {
+    items: LikeUser[] | []
+  }
 }
-
+type LikeUser = {
+  createdAt: string
+  id: string
+  tweetID: string
+  updatedAt: string
+  userID: string
+}
 export type HomeStackParamsList = {
   HOME_SCREEN: undefined
   NEW_TWEET_SCREEN: undefined

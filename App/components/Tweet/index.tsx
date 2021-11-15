@@ -18,7 +18,6 @@ const Tweet = ({ tweet }: TweetProps) => {
     navigation.navigate('SHOW_TWEET')
   }
 
-  console.log('tweet :>> ', tweet)
   return (
     <View style={styles.tweet_wrapper}>
       <ProfilePicture image={tweet.user.image || ''} size={40} isSVG />

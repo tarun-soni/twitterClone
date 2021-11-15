@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   home_container: {
     alignItems: 'center',
     backgroundColor: colorScheme === 'dark' ? COLORS.dark.bg : COLORS.light.bg,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 5,

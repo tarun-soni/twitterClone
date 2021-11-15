@@ -22,5 +22,6 @@ module.exports = {
         ignoreStyleProperties: false,
       },
     ],
+    'eslint-comments/no-unused-disable': 0,
   },
 }
