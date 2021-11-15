@@ -5,6 +5,7 @@ import { listTweets } from '../../../graphql/queries'
 import { wait } from '../../utils/wait'
 import Tweet from '../Tweet'
 import styles from './Feed.styles'
+import consola from 'consola'
 
 const Feed = () => {
   const [tweets, setTweets] = useState([])
@@ -21,11 +22,9 @@ const Feed = () => {
         setLoading(true)
         const tweetsData: any = await API.graphql(graphqlOperation(listTweets))
         setTweets(tweetsData.data.listTweets.items)
-
         setLoading(false)
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('error', error)
+        consola.warn('error 👉 ', error)
       }
     }
     fetchTweets()

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, View } from 'react-native'
 import { SvgUri } from 'react-native-svg'
 import styles from './ProfilePicture.styles'
 
@@ -32,7 +32,6 @@ const ProfilePicture = ({
 
   return (
     <View>
-      {console.log('image :>> ', image)}
       <Image
         source={{ uri: image || DEFAULT_IMAGE_2 }}
         style={[
