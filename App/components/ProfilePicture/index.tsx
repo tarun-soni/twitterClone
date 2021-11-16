@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { Image, View } from 'react-native'
 import { SvgUri } from 'react-native-svg'
@@ -9,7 +8,6 @@ type ProfilePictureProps = {
   image: string
   isSVG?: boolean
 }
-const DEFAULT_IMAGE_1 = 'https://i.imgur.com/dfEcVgu.jpeg'
 const DEFAULT_IMAGE_2 = 'https://i.imgur.com/IoJeHIw.png'
 
 const ProfilePicture = ({

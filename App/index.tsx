@@ -6,18 +6,19 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import useColorScheme from './hooks/useColorScheme'
 import Navigation from './navigation'
 import config from '../src/aws-exports'
-import { getUser } from '../graphql/queries'
 
 // aws
 import Amplify from '@aws-amplify/core'
-import Auth from '@aws-amplify/auth'
-import API from '@aws-amplify/api'
-import { graphqlOperation } from '@aws-amplify/api-graphql'
 //@ts-ignore
 import { withAuthenticator } from 'aws-amplify-react-native'
 import getRandomImage from './utils/getRandomImage'
-import { createUser } from '../graphql/mutations'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {
+  getAuthenticatedUser,
+  getUserData,
+  saveUserToDB,
+} from './services/userServices'
+import { GetUserQuery } from '../API'
 
 Amplify.configure({
   ...config,
@@ -28,40 +29,28 @@ Amplify.configure({
 const App = () => {
   const colorScheme = useColorScheme()
 
-  const saveUserToDB = async (user: any) => {
-    console.log('user in saveUserToDB', user)
-    await API.graphql(graphqlOperation(createUser, { input: user }))
-  }
-
   useEffect(() => {
     async function run() {
-      // get current authenticated user
-
-      const userInfo = await Auth.currentAuthenticatedUser({
-        bypassCache: true,
-      })
-
+      const userInfo = await getAuthenticatedUser()
       console.log('userInfo :>> ', userInfo)
+
       if (userInfo) {
         // Check if user already exists in database
         // TODO: type userData and remove any
-        const userData: any = await API.graphql(
-          graphqlOperation(getUser, {
-            id: userInfo.attributes.sub,
-          }),
-        )
+        const userData: any = await getUserData(userInfo.attributes.sub)
+        console.log(`userData`, userData)
 
-        console.log('userData', userData)
+        const user: GetUserQuery = userData.data
 
-        if (!userData.data.getUser) {
-          const user = {
+        if (!user.getUser) {
+          const _user = {
             id: userInfo.attributes.sub,
             username: userInfo.username,
             name: userInfo.username,
             email: userInfo.attributes.email,
             image: getRandomImage(),
           }
-          await saveUserToDB(user)
+          await saveUserToDB(_user)
         } else {
           console.log('User already exists')
           await AsyncStorage.setItem('@current_user', JSON.stringify(userData))

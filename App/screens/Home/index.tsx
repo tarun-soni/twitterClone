@@ -15,7 +15,8 @@ import {
 } from '@react-navigation/stack'
 import getAsyncStorageData from '../../utils/getAsyncStorageData'
 import Feed from '../../components/Feed'
-
+import { CreateUserInput } from '../../../API'
+import consola from 'consola'
 function HomeScreen() {
   return (
     <View style={styles.home_container}>
@@ -26,15 +27,10 @@ function HomeScreen() {
 }
 
 const Home = () => {
-  type UserType = {
-    username: string
-    image: string
-  }
+  const DEFAULT_PROFILE_URL = 'https://i.imgur.com/dfEcVgu.jpeg'
+
   const HomeStack = createStackNavigator<HomeStackParamsList>()
-  const [currentUser, setCurrentUser] = useState<UserType>({
-    username: '',
-    image: '',
-  })
+  const [currentUser, setCurrentUser] = useState<CreateUserInput>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -42,12 +38,17 @@ const Home = () => {
       try {
         setLoading(true)
         // TODO: type this async storage user obj
+        // TODO: get from store
         const user: any = await getAsyncStorageData('@current_user')
+
+        consola.info('user 👉', user)
         if (user.data) {
-          const { image, username } = user.data.getUser
+          const { image, username, email, name } = user.data.getUser
           setCurrentUser({
             username,
+            name,
             image,
+            email,
           })
         }
         setLoading(false)
@@ -83,7 +84,11 @@ const Home = () => {
                 {loading ? (
                   <ActivityIndicator />
                 ) : (
-                  <ProfilePicture size={30} isSVG image={currentUser.image} />
+                  <ProfilePicture
+                    size={30}
+                    isSVG
+                    image={currentUser?.image || DEFAULT_PROFILE_URL}
+                  />
                 )}
               </View>
             )
