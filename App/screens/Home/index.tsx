@@ -27,8 +27,6 @@ function HomeScreen() {
 }
 
 const Home = () => {
-  const DEFAULT_PROFILE_URL = 'https://i.imgur.com/dfEcVgu.jpeg'
-
   const HomeStack = createStackNavigator<HomeStackParamsList>()
   const [currentUser, setCurrentUser] = useState<CreateUserInput>()
   const [loading, setLoading] = useState(false)
@@ -87,7 +85,7 @@ const Home = () => {
                   <ProfilePicture
                     size={30}
                     isSVG
-                    image={currentUser?.image || DEFAULT_PROFILE_URL}
+                    image={currentUser?.image || null}
                   />
                 )}
               </View>

@@ -5,7 +5,7 @@ import styles from './ProfilePicture.styles'
 
 type ProfilePictureProps = {
   size?: number
-  image: string
+  image: string | null
   isSVG?: boolean
 }
 const DEFAULT_IMAGE_2 = 'https://i.imgur.com/IoJeHIw.png'
