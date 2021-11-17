@@ -1,40 +1,47 @@
 import { User } from '../../../API'
-import { userTypes } from '../ActionTypes/userTypes'
+import { userActionTypes } from '../ActionTypes/userTypes'
+// tpyes.
 
-export interface FetchUserRequest {
-  type: typeof userTypes.FETCH_USER_REQUEST
-}
-export interface FetchUserFailurePayload {
-  error: string
-}
-export interface FetchUserSuccessPayload {
+export interface SetUserSuccessPayload {
   currentUser: User
 }
-
-export type FetchUsersSuccess = {
-  type: typeof userTypes.FETCH_USER_SUCCESS
-  payload: FetchUserSuccessPayload
+export interface SetUserFailurePayload {
+  error: string
 }
-export type FetchUsersFailure = {
-  type: typeof userTypes.FETCH_USER_FAILURE
-  payload: FetchUserFailurePayload
+export type SetCurrentUserRequestReturn = {
+  type: typeof userActionTypes.SET_CURRENT_USER_REQUEST
+  payload: User
+}
+export type SetCurrentUserSuccessReturn = {
+  type: typeof userActionTypes.SET_CURRENT_USER_SUCCESS
+  payload: SetUserSuccessPayload
 }
 
-// user actions
-export const fetchUserRequest = (): FetchUserRequest => ({
-  type: userTypes.FETCH_USER_REQUEST,
-})
+export type SetCurrentUserFailureReturn = {
+  type: typeof userActionTypes.SET_CURRENT_USER_FAILURE
+  payload: SetUserFailurePayload
+}
+//----------------------------------------------------------------
 
-export const fetchUsersSuccess = (
-  payload: FetchUserSuccessPayload,
-): FetchUsersSuccess => ({
-  type: userTypes.FETCH_USER_SUCCESS,
+// functions
+
+export const setCurrentUserRequest = (
+  payload: User,
+): SetCurrentUserRequestReturn => ({
+  type: userActionTypes.SET_CURRENT_USER_REQUEST,
   payload,
 })
 
-export const fetchUsersFailure = (
-  payload: FetchUserFailurePayload,
-): FetchUsersFailure => ({
-  type: userTypes.FETCH_USER_FAILURE,
+export const setCurrentUserSuccess = (
+  payload: SetUserSuccessPayload,
+): SetCurrentUserSuccessReturn => ({
+  type: userActionTypes.SET_CURRENT_USER_SUCCESS,
+  payload,
+})
+
+export const setCurrentUserFailure = (
+  payload: SetUserFailurePayload,
+): SetCurrentUserFailureReturn => ({
+  type: userActionTypes.SET_CURRENT_USER_FAILURE,
   payload,
 })

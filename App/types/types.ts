@@ -55,12 +55,8 @@ declare global {
     interface RootParamList extends RootRootParams {}
   }
 }
-
-export interface ResponseGenerator {
-  config?: any
-  data?: any
-  headers?: any
-  request?: any
-  status?: number
-  statusText?: string
+export type SagaResponse = {
+  error?: any | null
+  success?: boolean | null
+  data?: any | null
 }

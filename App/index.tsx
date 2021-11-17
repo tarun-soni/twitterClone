@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import 'react-native-gesture-handler'
 import React, { useEffect } from 'react'
 import { StatusBar } from 'react-native'
@@ -18,7 +17,12 @@ import {
   getUserData,
   saveUserToDB,
 } from './services/userServices'
-import { GetUserQuery } from '../API'
+import { GetUserQuery, User } from '../API'
+import { Provider, useDispatch } from 'react-redux'
+import { store } from './store'
+import consola from 'consola'
+import { setCurrentUserRequest } from './store/actions/userActions'
+import { get } from 'lodash'
 
 Amplify.configure({
   ...config,
@@ -26,23 +30,20 @@ Amplify.configure({
     disabled: true,
   },
 })
-const App = () => {
-  const colorScheme = useColorScheme()
 
+const AppWrapper = () => {
+  const dispatch = useDispatch()
   useEffect(() => {
     async function run() {
       const userInfo = await getAuthenticatedUser()
-      console.log('userInfo :>> ', userInfo)
 
       if (userInfo) {
         // Check if user already exists in database
-        // TODO: type userData and remove any
         const userData: any = await getUserData(userInfo.attributes.sub)
-        console.log(`userData`, userData)
+        const user: User = get(userData, 'data', {})
 
-        const user: GetUserQuery = userData.data
-
-        if (!user.getUser) {
+        if (!user) {
+          // if not, create new user in database
           const _user = {
             id: userInfo.attributes.sub,
             username: userInfo.username,
@@ -52,21 +53,30 @@ const App = () => {
           }
           await saveUserToDB(_user)
         } else {
-          console.log('User already exists')
+          consola.info('User already exists in database')
           await AsyncStorage.setItem('@current_user', JSON.stringify(userData))
+          dispatch(setCurrentUserRequest(user))
         }
       }
-      // if not, create new user in database
     }
     run()
-  }, [])
+  }, [dispatch])
+  return null
+}
+
+const AppWrapped = withAuthenticator(AppWrapper)
+
+const App = () => {
+  const colorScheme = useColorScheme()
   return (
     <SafeAreaProvider>
-      <StatusBar />
-      <Navigation colorScheme={colorScheme} />
+      <Provider store={store}>
+        <StatusBar />
+        <AppWrapped />
+        <Navigation colorScheme={colorScheme} />
+      </Provider>
     </SafeAreaProvider>
   )
 }
 
 export default withAuthenticator(App)
-// export default App

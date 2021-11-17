@@ -1,10 +1,10 @@
 import { User } from '../../../../API'
 import {
-  FetchUsersFailure,
-  FetchUserRequest,
-  FetchUsersSuccess,
+  SetCurrentUserFailureReturn,
+  SetCurrentUserRequestReturn,
+  SetCurrentUserSuccessReturn,
 } from '../../actions/userActions'
-import { userTypes } from '../../ActionTypes/userTypes'
+import { userActionTypes } from '../../ActionTypes/userTypes'
 
 interface UserInitState {
   pending: boolean
@@ -13,9 +13,9 @@ interface UserInitState {
 }
 
 export type UserActions =
-  | FetchUserRequest
-  | FetchUsersSuccess
-  | FetchUsersFailure
+  | SetCurrentUserRequestReturn
+  | SetCurrentUserSuccessReturn
+  | SetCurrentUserFailureReturn
 
 const initialState: UserInitState = {
   pending: false,
@@ -25,19 +25,19 @@ const initialState: UserInitState = {
 
 export default (state = initialState, action: UserActions) => {
   switch (action.type) {
-    case userTypes.FETCH_USER_REQUEST:
+    case userActionTypes.SET_CURRENT_USER_REQUEST:
       return {
         ...state,
         pending: true,
       }
-    case userTypes.FETCH_USER_SUCCESS:
+    case userActionTypes.SET_CURRENT_USER_SUCCESS:
       return {
         ...state,
         pending: false,
         currentUser: action.payload.currentUser,
         error: null,
       }
-    case userTypes.FETCH_USER_FAILURE:
+    case userActionTypes.SET_CURRENT_USER_FAILURE:
       return {
         ...state,
         pending: false,

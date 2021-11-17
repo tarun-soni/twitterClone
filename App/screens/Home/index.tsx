@@ -16,7 +16,7 @@ import {
 import getAsyncStorageData from '../../utils/getAsyncStorageData'
 import Feed from '../../components/Feed'
 import { CreateUserInput } from '../../../API'
-import consola from 'consola'
+
 function HomeScreen() {
   return (
     <View style={styles.home_container}>
@@ -39,7 +39,6 @@ const Home = () => {
         // TODO: get from store
         const user: any = await getAsyncStorageData('@current_user')
 
-        consola.info('user 👉', user)
         if (user.data) {
           const { image, username, email, name } = user.data.getUser
           setCurrentUser({
