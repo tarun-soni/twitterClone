@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { View, ActivityIndicator, Text } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
 import { COLORS } from '../../constants/theme'

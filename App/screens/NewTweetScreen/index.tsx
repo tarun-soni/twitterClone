@@ -6,30 +6,34 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  ActivityIndicator,
 } from 'react-native'
 import styles from './NewTweetScreen.styles'
 import ProfilePicture from '../../components/ProfilePicture'
-import { IMAGES } from '../../constants/theme'
+import { COLORS } from '../../constants/theme'
 import { createTweet } from '../../../graphql/mutations'
 import API from '@aws-amplify/api'
 import { graphqlOperation } from '@aws-amplify/api-graphql'
 import Auth from '@aws-amplify/auth'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const NewTweetScreen = ({ navigation }: any) => {
   const [tweetInput, setTweetInput] = useState('')
+  const { loading, currentUser } = useSelector((state: RootState) => state.user)
   const [imageUrl, setImageUrl] = useState<string | null>(
     'https://i.imgur.com/dfEcVgu.jpeg',
   )
 
   const onPostTweet = async () => {
     try {
-      const currentUser = await Auth.currentAuthenticatedUser({
+      const _currentUser = await Auth.currentAuthenticatedUser({
         bypassCache: true,
       })
       const newTweet = {
         content: tweetInput,
         image: imageUrl,
-        userID: currentUser.attributes.sub,
+        userID: _currentUser.attributes.sub,
       }
       await API.graphql(
         graphqlOperation(createTweet, {
@@ -60,7 +64,11 @@ const NewTweetScreen = ({ navigation }: any) => {
         </TouchableOpacity>
       </View>
       <View style={styles.newTweetContainer}>
-        <ProfilePicture image={IMAGES.demo_profile_uri} />
+        {loading || !currentUser?.image ? (
+          <ActivityIndicator size="small" color={COLORS.twitterBlue} />
+        ) : (
+          <ProfilePicture isSVG image={currentUser?.image} />
+        )}
         <View style={styles.inputsContainer}>
           <TextInput
             value={tweetInput}
@@ -78,6 +86,7 @@ const NewTweetScreen = ({ navigation }: any) => {
               <Text style={styles.pickImage}>Remove image</Text>
             </TouchableOpacity>
           </View>
+
           {imageUrl && (
             <Image
               source={{ uri: imageUrl }}
