@@ -8,7 +8,7 @@ import rootSaga from './sagas/rootSaga'
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
   posts: tweetReducer,
-  users: userReducer,
+  user: userReducer,
 })
 
 const store = createStore(

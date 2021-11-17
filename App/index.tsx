@@ -11,13 +11,12 @@ import Amplify from '@aws-amplify/core'
 //@ts-ignore
 import { withAuthenticator } from 'aws-amplify-react-native'
 import getRandomImage from './utils/getRandomImage'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   getAuthenticatedUser,
   getUserData,
   saveUserToDB,
 } from './services/userServices'
-import { GetUserQuery, User } from '../API'
+import { User } from '../API'
 import { Provider, useDispatch } from 'react-redux'
 import { store } from './store'
 import consola from 'consola'
@@ -40,7 +39,7 @@ const AppWrapper = () => {
       if (userInfo) {
         // Check if user already exists in database
         const userData: any = await getUserData(userInfo.attributes.sub)
-        const user: User = get(userData, 'data', {})
+        const user: User = get(userData, 'data.getUser', {})
 
         if (!user) {
           // if not, create new user in database
@@ -54,7 +53,6 @@ const AppWrapper = () => {
           await saveUserToDB(_user)
         } else {
           consola.info('User already exists in database')
-          await AsyncStorage.setItem('@current_user', JSON.stringify(userData))
           dispatch(setCurrentUserRequest(user))
         }
       }

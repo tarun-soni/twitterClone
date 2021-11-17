@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
-import { View, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator, Text } from 'react-native'
 import ProfilePicture from '../../components/ProfilePicture'
 import { COLORS } from '../../constants/theme'
 import styles from './home.styles'
@@ -13,9 +13,9 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from '@react-navigation/stack'
-import getAsyncStorageData from '../../utils/getAsyncStorageData'
 import Feed from '../../components/Feed'
-import { CreateUserInput } from '../../../API'
+import { RootState } from '../../store'
+import { useSelector } from 'react-redux'
 
 function HomeScreen() {
   return (
@@ -28,33 +28,11 @@ function HomeScreen() {
 
 const Home = () => {
   const HomeStack = createStackNavigator<HomeStackParamsList>()
-  const [currentUser, setCurrentUser] = useState<CreateUserInput>()
-  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        setLoading(true)
-        // TODO: type this async storage user obj
-        // TODO: get from store
-        const user: any = await getAsyncStorageData('@current_user')
+  const { loading, currentUser, error } = useSelector(
+    (state: RootState) => state.user,
+  )
 
-        if (user.data) {
-          const { image, username, email, name } = user.data.getUser
-          setCurrentUser({
-            username,
-            name,
-            image,
-            email,
-          })
-        }
-        setLoading(false)
-      } catch (error) {
-        console.log('error', error)
-      }
-    }
-    fetchUser()
-  }, [])
   return (
     <HomeStack.Navigator initialRouteName={'HOME_SCREEN'}>
       <HomeStack.Screen
@@ -76,16 +54,15 @@ const Home = () => {
             </View>
           ),
           headerLeft: () => {
+            if (error) {
+              return <Text> Error </Text>
+            }
             return (
               <View style={styles.header_btn_container}>
-                {loading ? (
-                  <ActivityIndicator />
+                {loading || !currentUser?.image ? (
+                  <ActivityIndicator size="small" color={COLORS.twitterBlue} />
                 ) : (
-                  <ProfilePicture
-                    size={30}
-                    isSVG
-                    image={currentUser?.image || null}
-                  />
+                  <ProfilePicture size={30} isSVG image={currentUser?.image} />
                 )}
               </View>
             )

@@ -7,7 +7,7 @@ import {
 import { userActionTypes } from '../../ActionTypes/userTypes'
 
 interface UserInitState {
-  pending: boolean
+  loading: boolean
   currentUser: User | null
   error: string | null
 }
@@ -18,7 +18,7 @@ export type UserActions =
   | SetCurrentUserFailureReturn
 
 const initialState: UserInitState = {
-  pending: false,
+  loading: false,
   currentUser: null,
   error: null,
 }
@@ -28,19 +28,19 @@ export default (state = initialState, action: UserActions) => {
     case userActionTypes.SET_CURRENT_USER_REQUEST:
       return {
         ...state,
-        pending: true,
+        loading: true,
       }
     case userActionTypes.SET_CURRENT_USER_SUCCESS:
       return {
         ...state,
-        pending: false,
+        loading: false,
         currentUser: action.payload.currentUser,
         error: null,
       }
     case userActionTypes.SET_CURRENT_USER_FAILURE:
       return {
         ...state,
-        pending: false,
+        loading: false,
         currentUser: null,
         error: action.payload.error,
       }
