@@ -22,7 +22,7 @@ const NewTweetScreen = ({ navigation }: any) => {
   const [tweetInput, setTweetInput] = useState('')
   const { loading, currentUser } = useSelector((state: RootState) => state.user)
   const [imageUrl, setImageUrl] = useState<string | null>(
-    'https://i.imgur.com/dfEcVgu.jpeg',
+    'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.png',
   )
 
   const onPostTweet = async () => {

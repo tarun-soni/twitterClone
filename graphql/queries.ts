@@ -18,6 +18,13 @@ export const getUser = /* GraphQL */ `
           userID
           createdAt
           updatedAt
+          user {
+            id
+            username
+            name
+            email
+            image
+          }
         }
         nextToken
       }

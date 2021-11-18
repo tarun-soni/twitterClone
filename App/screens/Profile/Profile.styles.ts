@@ -44,16 +44,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   seperator: {
-    borderWidth: 1.2,
+    borderWidth: 0.5,
   },
-
   tweets_container: {
+    // borderWidth: 2,
     backgroundColor: COLORS.white,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
 })
 

@@ -48,7 +48,9 @@ const Feed = () => {
           data={tweets}
           extraData={isRefreshing}
           keyExtractor={(item: any) => item.id}
-          renderItem={({ item }) => <Tweet tweet={item} />}
+          renderItem={({ item }) => {
+            return <Tweet tweet={item} />
+          }}
           ItemSeparatorComponent={() => <View style={styles.seperator} />}
           refreshControl={
             <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />

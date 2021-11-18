@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import { IMAGES } from '../../constants/theme'
+import { COLORS, IMAGES } from '../../constants/theme'
 import styles from './Profile.styles'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import MyTweetsTab from './MyTweetsTab'
@@ -28,7 +28,7 @@ const Profile = () => {
           tabBarLabelStyle: { fontSize: 12, textTransform: 'capitalize' },
           tabBarItemStyle: { width: 100, height: 42 },
           tabBarIndicatorStyle: {
-            backgroundColor: 'red',
+            backgroundColor: COLORS.twitterBlue,
             width: 50,
             marginLeft: '10%',
             borderRadius: 10,

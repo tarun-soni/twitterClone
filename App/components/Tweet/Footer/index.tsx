@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import { TweetType } from '../../../types/types'
 import styles from './footer.styles'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
@@ -9,16 +8,18 @@ import { graphqlOperation } from '@aws-amplify/api-graphql'
 import API from '@aws-amplify/api'
 import { createLike, deleteLike } from '../../../../graphql/mutations'
 import Auth from '@aws-amplify/auth'
+import { Tweet as GeneratedTweetType } from '../../../../API'
 
 type FooterProps = {
-  tweet: TweetType
+  tweet: GeneratedTweetType
 }
 
 const Footer = ({ tweet }: FooterProps) => {
   const [user, setUser] = useState<any>()
   const [myLike, setMyLike] = useState<any>(null)
   const [likesCount, setLikesCount] = useState(tweet?.likes?.items?.length || 0)
-
+  const [commentsCount] = useState(0)
+  const [reTweetsCount] = useState(0)
   useEffect(() => {
     const fetchUser = async () => {
       const currentUser = await Auth.currentAuthenticatedUser()
@@ -30,7 +31,7 @@ const Footer = ({ tweet }: FooterProps) => {
   useEffect(() => {
     if (
       user &&
-      tweet.likes.items.some((e: any) => e.userID === user.attributes.sub)
+      tweet.likes?.items.some((e: any) => e.userID === user.attributes.sub)
     ) {
       setMyLike(true)
     }
@@ -85,11 +86,11 @@ const Footer = ({ tweet }: FooterProps) => {
     <View style={styles.footer_conatiner}>
       <View style={styles.iconContainer}>
         <FeatherIcon name={'message-circle'} size={18} color={'grey'} />
-        <Text style={styles.number}>{tweet.numberOfComments}</Text>
+        <Text style={styles.number}>{commentsCount}</Text>
       </View>
       <View style={styles.iconContainer}>
         <EvilIcon name={'retweet'} size={28} color={'grey'} />
-        <Text style={styles.number}>{tweet.numberOfRetweets}</Text>
+        <Text style={styles.number}>{reTweetsCount}</Text>
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={onLike}>
