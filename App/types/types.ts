@@ -31,6 +31,9 @@ type LikeUser = {
 export type HomeStackParamsList = {
   HOME_SCREEN: undefined
   NEW_TWEET_SCREEN: undefined
+  PROFILE_SCREEN: {
+    title: string
+  }
 }
 
 export type SearchStackParamsList = {

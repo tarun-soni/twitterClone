@@ -14,14 +14,6 @@ module.exports = {
     'no-console': 1,
     'react-native/no-color-literals': 2,
     'react-native/no-raw-text': 2,
-    'react-native/sort-styles': [
-      'error',
-      'asc',
-      {
-        ignoreClassNames: false,
-        ignoreStyleProperties: false,
-      },
-    ],
     'eslint-comments/no-unused-disable': 0,
   },
 }
