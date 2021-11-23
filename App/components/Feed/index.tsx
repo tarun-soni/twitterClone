@@ -1,62 +1,47 @@
-import API, { graphqlOperation } from '@aws-amplify/api'
 import React, { useCallback, useEffect, useState } from 'react'
-import { View, FlatList, ActivityIndicator, RefreshControl } from 'react-native'
-import { listTweets } from '../../../graphql/queries'
+import { View, FlatList, RefreshControl, Text } from 'react-native'
 import { wait } from '../../utils/wait'
 import Tweet from '../Tweet'
 import styles from './Feed.styles'
-import consola from 'consola'
+import { fetchTweetsRequest } from '../../store/actions/tweetActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const Feed = () => {
-  const [tweets, setTweets] = useState([])
-  const [loading, setLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const dispatch = useDispatch()
 
   const onRefresh = useCallback(() => {
     setIsRefreshing(true)
+    dispatch(fetchTweetsRequest())
     wait(1000).then(() => setIsRefreshing(false))
-  }, [])
+  }, [dispatch])
+
+  const { tweets, error } = useSelector((state: RootState) => state.tweets)
+
   useEffect(() => {
-    async function fetchTweets() {
-      try {
-        setLoading(true)
-        const tweetsData: any = await API.graphql(graphqlOperation(listTweets))
-        setTweets(tweetsData.data.listTweets.items)
-        setLoading(false)
-      } catch (error) {
-        consola.warn('error 👉 ', error)
-      }
-    }
-    fetchTweets()
-  }, [])
+    dispatch(fetchTweetsRequest())
+  }, [dispatch])
+
+  if (error) {
+    return <Text>Tweets failed to load, Swipe down to refresh</Text>
+  }
 
   return (
     <View style={{ width: '100%' }}>
-      {loading ? (
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          <ActivityIndicator size="large" />
-        </View>
-      ) : (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={tweets}
-          extraData={isRefreshing}
-          keyExtractor={(item: any) => item.id}
-          renderItem={({ item }) => {
-            return <Tweet tweet={item} />
-          }}
-          ItemSeparatorComponent={() => <View style={styles.seperator} />}
-          refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
-          }
-        />
-      )}
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={tweets}
+        extraData={isRefreshing}
+        keyExtractor={(item: any) => item.id}
+        renderItem={({ item }) => {
+          return <Tweet tweet={item} />
+        }}
+        ItemSeparatorComponent={() => <View style={styles.seperator} />}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+        }
+      />
     </View>
   )
 }

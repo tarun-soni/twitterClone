@@ -65,7 +65,7 @@ const NewTweetScreen = ({ navigation }: any) => {
       </View>
       <View style={styles.newTweetContainer}>
         {loading || !currentUser?.image ? (
-          <ActivityIndicator size="small" color={COLORS.twitterBlue} />
+          <ActivityIndicator size="small" color={COLORS.yellow} />
         ) : (
           <ProfilePicture isSVG image={currentUser?.image} />
         )}
