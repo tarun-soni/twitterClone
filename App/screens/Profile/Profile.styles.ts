@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     height: 180,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
 
   coverImage: {
@@ -17,9 +18,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '600',
-    fontSize: 31,
+    fontSize: 25,
   },
   infoContainer: {
+    paddingHorizontal: 15,
     flex: 1,
   },
   headerContainer: {
