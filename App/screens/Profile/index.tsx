@@ -25,7 +25,7 @@ const Profile = () => {
 
       <Tab.Navigator
         screenOptions={{
-          tabBarLabelStyle: { fontSize: 12, textTransform: 'capitalize' },
+          tabBarLabelStyle: { fontSize: 14, textTransform: 'capitalize' },
           tabBarItemStyle: { width: 100, height: 42 },
           tabBarIndicatorStyle: {
             backgroundColor: COLORS.twitterBlue,

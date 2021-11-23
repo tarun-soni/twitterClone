@@ -3,11 +3,8 @@ import { COLORS } from '../../constants/theme'
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: COLORS.gray,
     backgroundColor: COLORS.white,
-
     paddingTop: StatusBar.currentHeight,
-
     height: 180,
     flexDirection: 'row',
     alignItems: 'center',
@@ -47,12 +44,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   tweets_container: {
-    // borderWidth: 2,
     backgroundColor: COLORS.white,
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
   },
 })
 
