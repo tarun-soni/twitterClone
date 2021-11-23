@@ -30,7 +30,7 @@ Amplify.configure({
   },
 })
 
-const AppWrapper = () => {
+const AppWrapped = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     async function run() {
@@ -61,8 +61,6 @@ const AppWrapper = () => {
   }, [dispatch])
   return null
 }
-
-const AppWrapped = withAuthenticator(AppWrapper)
 
 const App = () => {
   const colorScheme = useColorScheme()
