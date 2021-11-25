@@ -1,32 +1,19 @@
 import React from 'react'
-import { View, Text, ActivityIndicator } from 'react-native'
 import { COLORS } from '../../constants/theme'
-import styles from './Profile.styles'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import MyTweetsTab from './MyTweetsTab'
 import LikedTweets from './LikedTweetsTab'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import ProfilePicture from '../../components/ProfilePicture'
+import ProfileHeader from '../../components/ProfileHeader'
 
 const Tab = createMaterialTopTabNavigator()
+
 const Profile = () => {
   const { currentUser, loading } = useSelector((state: RootState) => state.user)
   return (
     <>
-      <View style={styles.container}>
-        <View>
-          {loading || !currentUser?.image ? (
-            <ActivityIndicator size="small" color={COLORS.twitterBlue} />
-          ) : (
-            <ProfilePicture size={70} isSVG image={currentUser?.image} />
-          )}
-        </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.title}>{currentUser?.name}</Text>
-          <Text>{currentUser?.tweets?.items.length}</Text>
-        </View>
-      </View>
+      <ProfileHeader currentUser={currentUser} loading={loading} />
 
       <Tab.Navigator
         screenOptions={{

@@ -26,8 +26,6 @@ async function fetchTweetsApiCall() {
 function* fetchTweetsSaga() {
   try {
     const response: SagaResponse = yield call(fetchTweetsApiCall)
-
-    console.log('response :>> ', response)
     if (!response.success) {
       fetchTweetsFailure({
         error: response.error,
