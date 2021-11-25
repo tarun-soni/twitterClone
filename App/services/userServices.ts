@@ -3,6 +3,7 @@ import { graphqlOperation } from '@aws-amplify/api-graphql'
 import Auth from '@aws-amplify/auth'
 import { createUser } from '../../graphql/mutations'
 import { getUser } from '../../graphql/queries'
+import consola from 'consola'
 
 export const saveUserToDB = async (user: any) => {
   await API.graphql(graphqlOperation(createUser, { input: user }))
@@ -26,4 +27,10 @@ export const getUserData = async (id: string) => {
   return userData
 }
 
-// GetUserQuery
+export const signOutUser = async () => {
+  try {
+    await Auth.signOut({ global: true })
+  } catch (error) {
+    consola.warn('error in signout 👉', error)
+  }
+}

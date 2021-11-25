@@ -1,7 +1,7 @@
 import { User } from '../../../API'
 import { userActionTypes } from '../ActionTypes/userTypes'
-// tpyes.
 
+// types
 export interface SetUserSuccessPayload {
   currentUser: User
 }
@@ -21,6 +21,7 @@ export type SetCurrentUserFailureReturn = {
   type: typeof userActionTypes.SET_CURRENT_USER_FAILURE
   payload: SetUserFailurePayload
 }
+
 //----------------------------------------------------------------
 
 // functions

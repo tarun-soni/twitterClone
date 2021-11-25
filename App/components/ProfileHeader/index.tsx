@@ -4,8 +4,7 @@ import { User } from '../../../API'
 import { COLORS } from '../../constants/theme'
 import ProfilePicture from '../ProfilePicture'
 import styles from './ProfileHeader.styles'
-import Auth from '@aws-amplify/auth'
-import consola from 'consola'
+import { signOutUser } from '../../services/userServices'
 
 interface ProfileHeaderProps {
   currentUser: User | null
@@ -13,11 +12,7 @@ interface ProfileHeaderProps {
 }
 const ProfileHeader = ({ currentUser, loading }: ProfileHeaderProps) => {
   const signOutHandler = () => {
-    try {
-      Auth.signOut()
-    } catch (error) {
-      consola.warn('error in signout 👉', error)
-    }
+    signOutUser()
   }
 
   return (
