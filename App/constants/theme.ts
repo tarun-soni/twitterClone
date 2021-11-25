@@ -40,4 +40,12 @@ export const SIZES = {
 
 export const IMAGES = {
   demo_profile_uri: 'https://i.imgur.com/dfEcVgu.jpg',
+  TWEET_DEMO_URL_1:
+    'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.png',
+  TWEET_DEMO_URL_2:
+    'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  TWEET_DEMO_URL_3:
+    'https://images.pexels.com/photos/515414/pexels-photo-515414.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  TWEET_DEMO_URL_4:
+    'https://images.pexels.com/photos/4326896/pexels-photo-4326896.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
 }

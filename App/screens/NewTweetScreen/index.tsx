@@ -10,26 +10,25 @@ import {
 } from 'react-native'
 import styles from './NewTweetScreen.styles'
 import ProfilePicture from '../../components/ProfilePicture'
-import { COLORS } from '../../constants/theme'
+import { COLORS, IMAGES } from '../../constants/theme'
 import { createTweet } from '../../../graphql/mutations'
 import API from '@aws-amplify/api'
 import { graphqlOperation } from '@aws-amplify/api-graphql'
-import Auth from '@aws-amplify/auth'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import { getAuthenticatedUser } from '../../services/userServices'
 
 const NewTweetScreen = ({ navigation }: any) => {
   const [tweetInput, setTweetInput] = useState('')
   const { loading, currentUser } = useSelector((state: RootState) => state.user)
   const [imageUrl, setImageUrl] = useState<string | null>(
-    'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.png',
+    IMAGES.TWEET_DEMO_URL_4,
   )
 
   const onPostTweet = async () => {
     try {
-      const _currentUser = await Auth.currentAuthenticatedUser({
-        bypassCache: true,
-      })
+      const _currentUser = await getAuthenticatedUser()
+
       const newTweet = {
         content: tweetInput,
         image: imageUrl,
